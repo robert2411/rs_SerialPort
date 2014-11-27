@@ -30,7 +30,7 @@ Changes		:
 class SerialPort
 {
 	public:
-		SerialPort::SerialPort(const char* portName, bool debugModues = false);
+		SerialPort(const char* portName, bool debugModues = false);
 		~SerialPort();
 		int Write(char* message);
 		char* GetBuffer();
