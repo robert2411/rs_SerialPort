@@ -32,9 +32,10 @@ class SerialPort
 	public:
 		SerialPort(const char* portName, bool debugModues = false);
 		~SerialPort();
-		int Write(char* message);
+		int Write(void* message, int size)
 		char* GetBuffer();
 		char ReadByte();
+		
 	protected:
 		int OpenPort();
 		int ClosePort();
@@ -49,7 +50,6 @@ class SerialPort
 		char* m_buff;
 		char* m_buffer;
 		char* m_bufptr;
-		int m_wr;
 		int m_nbytes;
 		int m_tries;
 		

@@ -39,8 +39,20 @@ char SerialPort::ReadByte()
 	int returnVal = -2;
 	
 	if(m_portIsOpen)
-		returnVal=read(m_fd1,(void*)&byte,1);
+		returnVal=read(m_fd1,(void*)&byte,sizeof(char));
 	return byte;
+}
+
+int SerialPort::Write(void* message, int size)
+{
+	int wr = -1;
+	if(m_portIsOpen)
+	{
+		wr=write(fd1,message,size);
+	}
+	if (wr != size)
+		return -1;
+	return 0;
 }
 
 int SerialPort::ClosePort()
