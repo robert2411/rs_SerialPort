@@ -20,6 +20,8 @@ Changes		:
 #define SERIALPORT_H_
 
 #include <stdio.h>
+#include <sstream>
+#include <string>
 
 /* linux files */
 #include <string.h>
@@ -27,13 +29,22 @@ Changes		:
 #include <termios.h>
 #include <unistd.h>
 
+#include <stdlib.h>
+
+template<typename T>
+std::string toString(const T& value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+
 class SerialPort
 {
 	public:
 		SerialPort(const char* portName, bool debugModues = false);
 		~SerialPort();
-		int Write(void* message, int size)
-		char* GetBuffer();
+		int Write(void* message, int size);
 		char ReadByte();
 		
 	protected:
@@ -43,7 +54,7 @@ class SerialPort
 		bool m_portIsOpen;
 		bool m_debugModus;
 		const char* mp_portName;
-		
+		int m_boudRate;
 		/*linux variable */
 		
 		int m_fd1;

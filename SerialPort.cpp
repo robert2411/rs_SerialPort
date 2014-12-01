@@ -1,17 +1,27 @@
 #include "SerialPort.h"
-
+//stty -F /dev/ttyX0 567890
 //http://softexpert.wordpress.com/2007/10/18/how-to-connect-to-a-serial-port-in-linux-using-c/
 
 SerialPort::SerialPort(const char* portName, bool debugModues)
 {
 	m_debugModus = debugModues;
 	mp_portName = portName;
-	
+	m_boudRate = 9600;
 	m_portIsOpen = false;
 	
 	if(m_debugModus) printf("The serialPort class started in debug modus!\r\n");
 	
+	std::string command = "stty -F ";
+	command += mp_portName;
+	command += " ";
+	command += toString(m_boudRate);
+	
+	if(m_debugModus) printf("the system command is %s\r\n",command.c_str());
+	
+	
+	
 	OpenPort();
+	//system(command.c_str());
 }
 
 int SerialPort::OpenPort()
@@ -48,7 +58,7 @@ int SerialPort::Write(void* message, int size)
 	int wr = -1;
 	if(m_portIsOpen)
 	{
-		wr=write(fd1,message,size);
+		wr=write(m_fd1,message,size);
 	}
 	if (wr != size)
 		return -1;
