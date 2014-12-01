@@ -13,7 +13,7 @@ int main()
 		char byte = port.ReadByte();
 		if (byte >= 0)
 			printf("%c",byte);
-		//sleep(1);
+		sleep(1);
 	}
 	return 0;
 }

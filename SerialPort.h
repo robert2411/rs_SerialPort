@@ -13,7 +13,7 @@ Description	:	This is a cross platform serialPort Class
 Dependencies:	
 
 Changes		:
-				03-11-2014	-		
+				02-12-2014 - Worked on the baud rate	
 
 \**************************************************************************************/
 #ifndef SERIALPORT_H_
@@ -38,7 +38,9 @@ std::string toString(const T& value)
     oss << value;
     return oss.str();
 }
-
+/**
+ * This is a simple class to communicate with the serial port on linux it has a fixt baudrate of 9600
+ */
 class SerialPort
 {
 	public:
@@ -50,6 +52,7 @@ class SerialPort
 	protected:
 		int OpenPort();
 		int ClosePort();
+		int SetParams();
 		
 		bool m_portIsOpen;
 		bool m_debugModus;
@@ -58,11 +61,6 @@ class SerialPort
 		/*linux variable */
 		
 		int m_fd1;
-		char* m_buff;
-		char* m_buffer;
-		char* m_bufptr;
-		int m_nbytes;
-		int m_tries;
 		
 };
 #endif
