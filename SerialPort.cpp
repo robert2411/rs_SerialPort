@@ -11,7 +11,7 @@ SerialPort::SerialPort(const char* portName, bool debugModues)
 	if(m_debugModus) printf("The serialPort class started in debug modus!\r\n");
 	
 	OpenPort();
-	SetParams();
+	//SetParams();
 	
 }
 
