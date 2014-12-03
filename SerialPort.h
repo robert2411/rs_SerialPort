@@ -31,13 +31,13 @@ Changes		:
 
 #include <stdlib.h>
 
-template<typename T>
-std::string toString(const T& value)
-{
-    std::ostringstream oss;
-    oss << value;
-    return oss.str();
-}
+//template<typename T>
+//std::string toString(const T& value)
+//{
+ //   std::ostringstream oss;
+  //  oss << value;
+   // return oss.str();
+//}
 /**
  * This is a simple class to communicate with the serial port on linux it has a fixt baudrate of 9600
  */
